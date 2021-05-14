@@ -1,11 +1,8 @@
 {
-  "name": "notion-api-db-to-gotify",
-  "description": "Uses the Notion API to periodically push notifications to Gotify when chore db status due or overdue",
+  "name": "notion-api-chore-db-to-gotify",
+  "description": "Uses the Notion API to periodically push notifications to Gotify when chore db status is due or overdue",
   "version": "0.1.0",
   "main": "src/index.js",
-  "bin": {
-    "notion-gotify": "src/index.js"
-  },
   "license": "MIT",
   "type": "module",
   "author": "Lewis James @lewiji",
