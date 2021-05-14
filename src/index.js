@@ -8,6 +8,7 @@ import { Client } from "@notionhq/client";
 
 dotenv();
 const argv = yargs(hideBin(process.argv)).argv;
+
 // Parameters, see README, .env.example, or command output
 const auth = maybeGetArgs('Notion API token', 'your_token', 'token', 'NOTION_TOKEN');
 const list_databases = argv['list'] === "true";
@@ -18,14 +19,17 @@ const gotify_token = maybeGetArgs('Gotify token', 'your_gotify_token', 'gotify-t
 const no_cron = argv['no-cron'] === "true";
 const cron_string = argv['cron-string'] || process.env.CRON_STRING || '0 8-21/3 * * *';
 
+// Try and get option from args or .env, and output a help message if not found
 function maybeGetArgs(humanName, humanParam, cliParam, envParam, error = true) {
     const arg = argv[cliParam] || process.env[envParam];
     if (!arg) {
         console.log(chalk.redBright.bgBlack.bold(`\n${humanName} not found.\n`));
         console.log('Either pass it as a CLI argument:', chalk.black.bgBlue.bold(` --${cliParam}=${humanParam} `));
         console.log('Or add it to .env as', chalk.black.bgBlue.bold(` ${envParam}=${humanParam} `), '\n');
+
         if (cliParam === 'db') console.log(chalk.cyanBright.bgBlack.bold("Hint: list known/shared databases with the --list=true option"));
         if (cliParam === 'gotify-url') console.log(chalk.yellow.bgBlack.bold("Continuing without gotify/cron..."));
+
         if (error) return process.exit(1);
     }
     return arg;
@@ -33,6 +37,7 @@ function maybeGetArgs(humanName, humanParam, cliParam, envParam, error = true) {
 
 console.log(chalk.red.bgBlack("Initialising Notion client..."));
 const notion = new Client({ auth });
+
 // Output readable list of (shared with integration) databases to grab ID
 const listDatabases = (async () => {
     const databases = await notion.databases.list();
