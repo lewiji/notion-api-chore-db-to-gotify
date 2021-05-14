@@ -1,0 +1,20 @@
+{
+  "name": "notion-api-db-to-gotify",
+  "description": "Uses the Notion API to periodically push notifications to Gotify when chore db status due or overdue",
+  "version": "0.1.0",
+  "main": "src/index.js",
+  "bin": {
+    "notion-gotify": "src/index.js"
+  },
+  "license": "MIT",
+  "type": "module",
+  "author": "Lewis James @lewiji",
+  "dependencies": {
+    "@notionhq/client": "^0.1.3",
+    "axios": "^0.21.1",
+    "chalk": "^4.1.1",
+    "dotenv": "^9.0.2",
+    "node-cron": "^3.0.0",
+    "yargs": "^17.0.1"
+  }
+}
