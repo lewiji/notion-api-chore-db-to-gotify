@@ -1,8 +1,8 @@
 # notion-api-chore-db-to-gotify
 #### (aka notion-gotify)
 
-Node.js program to periodically check the Notion API against a database,
-and send a push notification via [Gotify](https://gotify.net/) when conditions are met.
+Node.js program to periodically check (with `node-cron`) a Notion Database via the Notion API,
+and send a push notification via [Gotify](https://gotify.net/) when conditions are met on the database's children.
 
 The script specifically targets the ["Home Chores Manager" template by Trishka](https://prototion.com/notion-for/home-chores-manager) but can easily be modified to any Notion db by changing the `getTasksDueTodayOrOverdue` method.
 
